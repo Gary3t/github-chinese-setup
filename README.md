@@ -67,10 +67,16 @@ python3 scripts/diagnose.py
 
 ## 给 AI 助手安装（Agent Skill 形态）
 
+**方式一 · 一句话装（推荐，不用命令行）**
+
+在 [SkillHub](https://skillhub.cn/skills/chrome-userscript-setup) 搜「**GitHub 一键汉化**」，复制它给的提示词，发给你正在用的 AI 助手，让它装。WorkBuddy / Claude Code / Codex / Cursor 等都行。
+
+**方式二 · 克隆到 skills 目录**
+
 纯 Markdown + 跨平台脚本，不依赖任何运行时：
 
 ```bash
-git clone https://github.com/<you>/github-chinese-setup.git \
+git clone https://github.com/Gary3t/github-chinese-setup.git \
   ~/.workbuddy/skills/chrome-userscript-setup     # 或 ~/.claude/skills/、~/.codex/skills/
 ```
 

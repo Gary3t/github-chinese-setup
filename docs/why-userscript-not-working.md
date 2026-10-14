@@ -177,7 +177,8 @@ du -sh ~/Library/Application\ Support/Google/Chrome/Default/Local\ Extension\ Se
 
 它同时适用于 **WorkBuddy / Claude Code / Codex / Cursor / Gemini CLI** 等能读 Markdown 的 agent；不带 agent 的机器上，那份 HTML 手册也能一路走完。
 
-代码与文档：`github.com/<your-name>/chrome-userscript-setup`
+代码与文档：`https://github.com/Gary3t/github-chinese-setup`
+一句话安装（SkillHub 搜「GitHub 一键汉化」）：`https://skillhub.cn/skills/chrome-userscript-setup`
 
 ---
 
