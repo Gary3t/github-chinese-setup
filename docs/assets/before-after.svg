@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+  <rect width="1200" height="700" fill="#F7F8FA"/>
+
+  <text x="600" y="58" text-anchor="middle" font-size="30" font-weight="700" fill="#1F2430">同一个网站，两个样子</text>
+  <text x="600" y="92" text-anchor="middle" font-size="16" fill="#6B7280">左边是你现在的样子，右边是装完那个开关之后的样子</text>
+
+  <!-- LEFT: before -->
+  <rect x="60" y="140" width="510" height="440" rx="14" fill="#FFFFFF" stroke="#E3E6EA" stroke-width="1.5"/>
+  <rect x="60" y="140" width="510" height="46" rx="14" fill="#F1F3F5"/>
+  <rect x="60" y="172" width="510" height="14" fill="#F1F3F5"/>
+  <circle cx="88" cy="163" r="6" fill="#D1D5DB"/>
+  <circle cx="108" cy="163" r="6" fill="#D1D5DB"/>
+  <circle cx="128" cy="163" r="6" fill="#D1D5DB"/>
+  <rect x="150" y="153" width="380" height="20" rx="10" fill="#FFFFFF" stroke="#E3E6EA"/>
+  <text x="160" y="168" font-size="11" fill="#9CA3AF">github.com</text>
+
+  <rect x="88" y="212" width="454" height="40" rx="8" fill="#24292F"/>
+  <text x="104" y="238" font-size="15" font-weight="600" fill="#FFFFFF">Code</text>
+  <text x="160" y="238" font-size="15" fill="#C9D1D9">Issues</text>
+  <text x="224" y="238" font-size="15" fill="#C9D1D9">Pull requests</text>
+  <text x="336" y="238" font-size="15" fill="#C9D1D9">Marketplace</text>
+  <text x="448" y="238" font-size="15" fill="#C9D1D9">Explore</text>
+
+  <text x="88" y="300" font-size="20" font-weight="700" fill="#1F2430">Sign in to GitHub</text>
+  <rect x="88" y="322" width="454" height="1" fill="#EEF0F2"/>
+  <text x="88" y="358" font-size="14" fill="#4B5563">Username or email address</text>
+  <rect x="88" y="372" width="454" height="34" rx="6" fill="#FAFBFC" stroke="#D8DEE4"/>
+  <text x="88" y="436" font-size="14" fill="#4B5563">Password</text>
+  <rect x="88" y="450" width="454" height="34" rx="6" fill="#FAFBFC" stroke="#D8DEE4"/>
+  <rect x="88" y="508" width="120" height="36" rx="6" fill="#2DA44E"/>
+  <text x="148" y="532" text-anchor="middle" font-size="14" font-weight="600" fill="#FFFFFF">Sign in</text>
+
+  <rect x="60" y="600" width="510" height="52" rx="10" fill="#FEF2F2" stroke="#FECACA"/>
+  <text x="315" y="632" text-anchor="middle" font-size="17" font-weight="600" fill="#B91C1C">装之前：看得懂吗？</text>
+
+  <!-- RIGHT: after -->
+  <rect x="630" y="140" width="510" height="440" rx="14" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="2"/>
+  <rect x="630" y="140" width="510" height="46" rx="14" fill="#F1F3F5"/>
+  <rect x="630" y="172" width="510" height="14" fill="#F1F3F5"/>
+  <circle cx="658" cy="163" r="6" fill="#D1D5DB"/>
+  <circle cx="678" cy="163" r="6" fill="#D1D5DB"/>
+  <circle cx="698" cy="163" r="6" fill="#D1D5DB"/>
+  <rect x="720" y="153" width="380" height="20" rx="10" fill="#FFFFFF" stroke="#E3E6EA"/>
+  <text x="730" y="168" font-size="11" fill="#9CA3AF">github.com</text>
+
+  <rect x="658" y="212" width="454" height="40" rx="8" fill="#24292F"/>
+  <text x="674" y="238" font-size="15" font-weight="600" fill="#FFFFFF">代码</text>
+  <text x="722" y="238" font-size="15" fill="#C9D1D9">议题</text>
+  <text x="770" y="238" font-size="15" fill="#C9D1D9">拉取请求</text>
+  <text x="850" y="238" font-size="15" fill="#C9D1D9">市场</text>
+  <text x="904" y="238" font-size="15" fill="#C9D1D9">探索</text>
+
+  <text x="658" y="300" font-size="20" font-weight="700" fill="#1F2430">登录 GitHub</text>
+  <rect x="658" y="322" width="454" height="1" fill="#EEF0F2"/>
+  <text x="658" y="358" font-size="14" fill="#4B5563">用户名或邮箱地址</text>
+  <rect x="658" y="372" width="454" height="34" rx="6" fill="#FAFBFC" stroke="#D8DEE4"/>
+  <text x="658" y="436" font-size="14" fill="#4B5563">密码</text>
+  <rect x="658" y="450" width="454" height="34" rx="6" fill="#FAFBFC" stroke="#D8DEE4"/>
+  <rect x="658" y="508" width="120" height="36" rx="6" fill="#2DA44E"/>
+  <text x="718" y="532" text-anchor="middle" font-size="14" font-weight="600" fill="#FFFFFF">登录</text>
+
+  <rect x="630" y="600" width="510" height="52" rx="10" fill="#ECFDF5" stroke="#A7F3D0"/>
+  <text x="885" y="632" text-anchor="middle" font-size="17" font-weight="600" fill="#047857">装之后：这就看得懂了</text>
+
+  <!-- middle arrow -->
+  <line x1="580" y1="360" x2="620" y2="360" stroke="#9CA3AF" stroke-width="2"/>
+  <polygon points="628,360 612,353 612,367" fill="#9CA3AF"/>
+</svg>

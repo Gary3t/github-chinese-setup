@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一页搞定：让 Chrome 用上用户脚本（含 GitHub 中文化）</title>
+<style>
+  :root{
+    --ink:#1f2430; --ink2:#5b6474; --ink3:#8b93a3;
+    --line:#e4e7ee; --bg:#ffffff; --soft:#f6f7fa; --soft2:#eef1f6;
+    --accent:#0f6e56; --accent-soft:#e1f5ee;
+    --warn:#8a5a00; --warn-soft:#fdf3e0;
+    --danger:#a32d2d; --danger-soft:#fcebeb;
+    --ok:#3b6d11; --ok-soft:#eaf3de;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:40px 20px 72px;
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    color:var(--ink); background:var(--soft); line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 8px;letter-spacing:-.2px}
+  .sub{color:var(--ink2);font-size:14px;margin:0 0 28px}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:16px}
+  h2{font-size:16px;font-weight:600;margin:0 0 14px;display:flex;align-items:center;gap:9px}
+  h3{font-size:14px;font-weight:600;margin:18px 0 8px}
+  p{margin:0 0 10px;font-size:14px}
+  .lead{color:var(--ink2)}
+  .n{display:inline-flex;align-items:center;justify-content:center;
+     width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;
+     font-size:13px;font-weight:600;flex:none}
+  .n.gray{background:#c3c9d4}
+  .step{border-left:2px solid var(--line);padding:0 0 0 18px;margin:0 0 22px;position:relative}
+  .step:last-child{margin-bottom:0}
+  .step::before{content:"";position:absolute;left:-7px;top:9px;width:12px;height:12px;
+     border-radius:50%;background:#fff;border:2px solid var(--accent)}
+  .step.gray::before{border-color:#c3c9d4}
+  .step .t{font-size:15px;font-weight:600;margin:0 0 6px}
+  .step p{font-size:13.5px;color:var(--ink2);margin:0 0 8px}
+  kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+      background:var(--soft2);border:1px solid var(--line);border-bottom-width:2px;
+      border-radius:5px;padding:1px 6px;color:var(--ink)}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+      background:var(--soft2);border-radius:4px;padding:1px 5px}
+  .box{border-radius:10px;padding:14px 16px;font-size:13.5px;margin:0 0 14px}
+  .box.warn{background:var(--warn-soft);color:var(--warn);border:1px solid #f0dfbc}
+  .box.tip{background:var(--accent-soft);color:var(--accent);border:1px solid #c6e7db}
+  .box.bad{background:var(--danger-soft);color:var(--danger);border:1px solid #f2cccc}
+  .box.good{background:var(--ok-soft);color:var(--ok);border:1px solid #d8e8bd}
+  .box b{font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0 4px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--ink2);font-weight:500;font-size:12.5px;background:var(--soft)}
+  td:first-child{white-space:nowrap}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:1px}
+  .g{background:#639922}.y{background:#ef9f27}.r{background:#e24b4a}
+  ul{margin:6px 0 10px;padding-left:20px;font-size:13.5px;color:var(--ink2)}
+  li{margin-bottom:5px}
+  .faq{border-bottom:1px solid var(--line);padding:13px 0}
+  .faq:last-child{border-bottom:none;padding-bottom:0}
+  .faq .q{font-weight:600;font-size:13.5px;margin:0 0 5px}
+  .faq .a{font-size:13.5px;color:var(--ink2);margin:0}
+  .foot{color:var(--ink3);font-size:12.5px;text-align:center;margin-top:26px}
+  .chip{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:20px;
+     background:var(--soft2);color:var(--ink2);border:1px solid var(--line);margin-right:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>一页搞定：让 Chrome 用上用户脚本</h1>
+  <p class="sub">以「GitHub 界面中文化」为例 · macOS / Windows 通用 · 全程约 3 分钟</p>
+
+  <div class="card">
+    <h2>先搞清楚这是怎么回事</h2>
+    <p class="lead">
+      你要装的是两样东西：一个叫 <b>篡改猴（Tampermonkey）</b> 的扩展，加上一个具体功能的
+      <b>用户脚本</b>。篡改猴本身不翻译任何东西——它是个「网页改装平台」，装上脚本之后才会起作用。
+    </p>
+    <p class="lead">
+      有三步<b>必须你亲手点</b>，这不是偷懒，是浏览器的安全设计。用户脚本能以你的身份读写所有网页，
+      所以厂商刻意把授权设计成「必须本人点头」，任何程序都绕不过去。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>操作步骤</h2>
+
+    <div class="step">
+      <p class="t">装篡改猴</p>
+      <p>Chrome 应用商店搜索「篡改猴」或「Tampermonkey」，点「添加至 Chrome」。</p>
+      <p>如果弹出「要添加…扩展程序吗？」的确认框，点<b>「添加扩展程序」</b>。</p>
+    </div>
+
+    <div class="step">
+      <p class="t">打开「允许用户脚本」开关 <span class="chip">新版 Chrome 必须做</span></p>
+      <p>地址栏输入 <kbd>chrome://extensions</kbd> 回车，找到「篡改猴」卡片：</p>
+      <ul>
+        <li>卡片上的开关如果是灰的 → 先<b>打开它</b>（若弹出「启用扩展程序」就点它）</li>
+        <li>点卡片上的<b>「详情」</b> → 往下滚 → 打开<b>「允许用户脚本」</b></li>
+      </ul>
+      <div class="box warn">
+        <b>这一步最容易漏。</b>Chrome 138 版之后新增了这道开关，光启用扩展是不够的——
+        开关不开，脚本装了也不会跑，页面看起来「什么都没发生」。
+      </div>
+    </div>
+
+    <div class="step">
+      <p class="t">安装脚本</p>
+      <p>打开脚本页面，点绿色的<b>「安装此脚本」</b>，会跳到一个篡改猴的确认页，
+         再点上面的<b>「安装」</b>。</p>
+      <p>GitHub 中文化脚本直装链接：<br>
+         <code>update.greasyfork.org/scripts/435208</code></p>
+      <p>装完回到目标网页，按 <kbd>Cmd</kbd>+<kbd>R</kbd>（Windows：<kbd>Ctrl</kbd>+<kbd>R</kbd>）刷新。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>怎么确认真的成了</h2>
+    <p class="lead">三个问题逐条问自己，全「是」才算完成：</p>
+    <table>
+      <tr><th>自查</th><th>怎么看</th></tr>
+      <tr>
+        <td>扩展启用了吗</td>
+        <td><code>chrome://extensions</code> 里篡改猴的开关是蓝色的</td>
+      </tr>
+      <tr>
+        <td>开关开了吗</td>
+        <td>详情页里「允许用户脚本」是打开的</td>
+      </tr>
+      <tr>
+        <td>页面变了吗</td>
+        <td><b>刷新后亲眼看</b>——GitHub 顶部菜单变成「平台 / 解决方案 / 开源」就是成了</td>
+      </tr>
+    </table>
+    <div class="box tip">
+      只看设置对不对是不够的。曾经出现过「所有开关都正常，但脚本在扩展被重置时丢了」的情况——
+      所以<b>最后一定用眼睛确认页面</b>。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>出问题怎么办</h2>
+
+    <div class="faq">
+      <p class="q">点击「安装此脚本」后没反应 / 弹出的是乱码代码页</p>
+      <p class="a">说明篡改猴没启用，或「允许用户脚本」没打开。回到步骤 2 检查这两处，然后重试。</p>
+    </div>
+
+    <div class="faq">
+      <p class="q">全部设置都对，刷新了还是英文</p>
+      <p class="a">大概率是脚本没真正装进去。去篡改猴的控制台看「已安装脚本」列表里有没有它；
+         没有就重装一次脚本。重装前记得先确认上面两个开关是开的。</p>
+    </div>
+
+    <div class="faq">
+      <p class="q">装了汉化，但页面还是有一堆英文</p>
+      <p class="a">汉化脚本只覆盖<b>界面文字</b>（菜单、按钮、设置项）。README 正文、
+         讨论区留言这类大段内容不在范围内——那需要用翻译类扩展单独处理。</p>
+    </div>
+
+    <div class="faq">
+      <p class="q">Chrome 自带的「翻译成中文」弹窗要不要点</p>
+      <p class="a">可以关掉。它把你的页面内容发给翻译服务器，和本地汉化脚本是两回事；
+         万一哪天它和汉化脚本同时生效，反而会互相打架。</p>
+    </div>
+
+    <div class="faq">
+      <p class="q">工具栏上看不到篡改猴图标</p>
+      <p class="a">点工具栏右上角的拼图图标，里面能找到；旁边的图钉可以把它固定到工具栏。</p>
+    </div>
+
+    <div class="faq">
+      <p class="q">以后 GitHub 改版了会不会失效</p>
+      <p class="a">不会。这类主流脚本会自动更新词库，GitHub 改界面它自己会跟上，不用你管。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>装上之后还能干什么</h2>
+    <p class="lead">
+      篡改猴是个通用平台，社区里现成的脚本有几万个。下面按风险分三档，
+      这是装之前应该知道的事——<b>工具本身不违法，看怎么用</b>。
+    </p>
+
+    <table>
+      <tr><th>档位</th><th>典型用途</th><th>说明</th></tr>
+      <tr>
+        <td><span class="dot g"></span>放心用</td>
+        <td>界面汉化、购物历史价格、视频倍速/截图、去登录弹窗、深色模式、阅读模式</td>
+        <td>只改你屏幕上看到的东西，不碰别人权益</td>
+      </tr>
+      <tr>
+        <td><span class="dot y"></span>自己用没事</td>
+        <td>跳过视频贴片广告、下载视频离线自看、自动签到、导出自己账号数据</td>
+        <td>违反平台协议，个人自用实践中无人追究；
+            但<b>别拿去传播或商用</b>，那会直接变成下一档</td>
+      </tr>
+      <tr>
+        <td><span class="dot r"></span>别碰</td>
+        <td>把下载的影视/课程传出去分享、绕过付费墙、爬数据倒卖、刷单抢购、去水印后商用</td>
+        <td>侵犯著作权或构成其他违法，风险全在你自己身上</td>
+      </tr>
+    </table>
+
+    <h3>比「违不违法」更现实的一个风险</h3>
+    <div class="box bad">
+      脚本市场是开放平台，里面<b>混着恶意脚本</b>——假借「增强」「去广告」之名，
+      实际偷你的登录凭据、劫持剪贴板（你复制收款地址，它给你换成别人的）、往页面里塞推广。
+      <b>装之前看一眼：星标多不多、最近有没有更新、源码能不能看懂。</b>
+      名字里带「破解」「免费看会员」「无限刷」的，一律别装。
+    </div>
+
+    <h3>装完之后的三条边界（就三句话）</h3>
+    <ul>
+      <li>黄色档的用途只在<b>自己的设备上自用</b>，不商用、不分发、不二次开发牟利</li>
+      <li>不传播下载来的版权内容</li>
+      <li>发现异常（登录态丢失、剪贴板内容被改、莫名跳转）→ <b>立刻停用那个脚本</b></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>顺手记一下</h2>
+    <table>
+      <tr><th>项目</th><th>值</th></tr>
+      <tr><td>篡改猴扩展 ID</td><td><code>dhdgffkkebhmkfjojejmpbldmpobfkfo</code></td></tr>
+      <tr><td>GitHub 中文化脚本</td><td>maboloshi/github-chinese（开源，约 29k 星）</td></tr>
+      <tr><td>脚本直装链接</td><td><code>update.greasyfork.org/scripts/435208</code></td></tr>
+      <tr><td>扩展管理页</td><td><code>chrome://extensions</code></td></tr>
+    </table>
+  </div>
+
+  <p class="foot">本页可离线保存、转发给他人照做。</p>
+</div>
+</body>
+</html>

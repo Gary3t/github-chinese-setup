@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node (not used here, kept for safety)
+node_modules/
+
+# Local scratch
+/tmp/
+*.log

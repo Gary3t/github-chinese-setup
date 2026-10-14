@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" width="1200" height="880" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+  <rect width="1200" height="880" fill="#F7F8FA"/>
+
+  <text x="600" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1F2430">排障决策树：三步定位</text>
+  <text x="600" y="76" text-anchor="middle" font-size="15" fill="#6B7280">从「装了没反应」出发，每一步都收敛到唯一动作</text>
+
+  <!-- Start -->
+  <rect x="160" y="112" width="400" height="66" rx="33" fill="#1F2430"/>
+  <text x="360" y="153" text-anchor="middle" font-size="19" font-weight="600" fill="#FFFFFF">脚本装完了，页面毫无变化</text>
+
+  <!-- D1 -->
+  <polygon points="360,210 520,286 360,362 200,286" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+  <text x="360" y="280" text-anchor="middle" font-size="17" font-weight="600" fill="#1F2430">扩展已启用？</text>
+  <text x="360" y="304" text-anchor="middle" font-size="13" fill="#6B7280">chrome://extensions</text>
+
+  <!-- B1 -->
+  <rect x="700" y="258" width="440" height="56" rx="12" fill="#FFFFFF" stroke="#E3E6EA" stroke-width="1.5"/>
+  <text x="726" y="293" font-size="16" fill="#1F2430">① 启用篡改猴扩展，然后刷新页面</text>
+
+  <!-- D2 -->
+  <polygon points="360,428 520,504 360,580 200,504" fill="#FFFDF7" stroke="#F59E0B" stroke-width="2"/>
+  <text x="360" y="498" text-anchor="middle" font-size="17" font-weight="600" fill="#1F2430">「允许用户脚本」开着？</text>
+  <text x="360" y="522" text-anchor="middle" font-size="13" fill="#6B7280">扩展详情页内</text>
+
+  <!-- B2 -->
+  <rect x="700" y="476" width="440" height="56" rx="12" fill="#FFFDF7" stroke="#FDE68A" stroke-width="1.5"/>
+  <text x="726" y="511" font-size="16" fill="#1F2430">② 打开开关 → 刷新页面（这一步只能你来）</text>
+
+  <!-- D3 -->
+  <polygon points="360,646 520,722 360,798 200,722" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+  <text x="360" y="716" text-anchor="middle" font-size="17" font-weight="600" fill="#1F2430">扩展存储是 MB 级？</text>
+  <text x="360" y="740" text-anchor="middle" font-size="13" fill="#6B7280">du -sh .../Local Extension Settings/&lt;ID&gt;</text>
+
+  <!-- B3 -->
+  <rect x="700" y="694" width="440" height="56" rx="12" fill="#FEF2F2" stroke="#FECACA" stroke-width="1.5"/>
+  <text x="726" y="729" font-size="16" fill="#1F2430">③ 脚本已被清空 → 只能重装（配置回不去）</text>
+
+  <!-- Spine arrows -->
+  <g stroke="#9CA3AF" stroke-width="2">
+    <line x1="360" y1="178" x2="360" y2="204"/>
+    <line x1="360" y1="362" x2="360" y2="422"/>
+    <line x1="360" y1="580" x2="360" y2="640"/>
+  </g>
+  <polygon points="360,210 354,196 366,196" fill="#9CA3AF"/>
+  <polygon points="360,428 354,414 366,414" fill="#9CA3AF"/>
+  <polygon points="360,646 354,632 366,632" fill="#9CA3AF"/>
+
+  <!-- Branch arrows -->
+  <g stroke="#D1D5DB" stroke-width="2">
+    <line x1="520" y1="286" x2="694" y2="286"/>
+    <line x1="520" y1="504" x2="694" y2="504"/>
+    <line x1="520" y1="722" x2="694" y2="722"/>
+  </g>
+  <polygon points="700,286 686,280 686,292" fill="#D1D5DB"/>
+  <polygon points="700,504 686,498 686,510" fill="#D1D5DB"/>
+  <polygon points="700,722 686,716 686,728" fill="#D1D5DB"/>
+
+  <text x="384" y="404" font-size="14" font-weight="600" fill="#374151">是</text>
+  <text x="384" y="622" font-size="14" font-weight="600" fill="#374151">是</text>
+  <text x="536" y="276" font-size="14" font-weight="600" fill="#9CA3AF">否</text>
+  <text x="536" y="494" font-size="14" font-weight="600" fill="#9CA3AF">否</text>
+  <text x="536" y="712" font-size="14" font-weight="600" fill="#9CA3AF">否</text>
+
+  <text x="60" y="840" font-size="14" fill="#6B7280">注：三处全部为「是」却仍不生效，再查脚本的<tspan font-weight="600" fill="#1F2430">注入范围与匹配规则</tspan>是否覆盖该站点。</text>
+</svg>
